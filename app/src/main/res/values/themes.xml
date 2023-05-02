@@ -1,0 +1,58 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.SMD" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/app_theme</item>
+        <item name="colorPrimaryVariant">@color/yellow</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" >?attr/colorPrimary</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+
+    <style name="BottomCutCornersShape" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSizeTopLeft">35dp</item>
+<!--        <item name="cornerSize">10dp</item>-->
+<!--        <item name="cornerSizeBottomRight">50dp</item>-->
+    </style>
+
+    <style name="roundCorners" parent="ShapeAppearance.MaterialComponents.MediumComponent" >
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">25dp</item>
+        <item name="cornerSizeTopRight">25dp</item>
+
+    </style>
+
+    <style name="myCardView" parent="CardView" >
+        <item name="layout_goneMarginTop">3dp</item>
+        <item name="layout_goneMarginBottom">3dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardCornerRadius">7dp</item>
+        <item name="contentPadding">5dp</item>
+
+    </style>
+
+    <style name="Divider" >
+        <item name="android:background">#D6EFFF</item>
+    </style>
+    <style name="Divider.Horizontal" parent="Divider">
+        <item name="android:layout_height">7dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Button" parent="Widget.Material3.Button.OutlinedButton.Icon">
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center|left</item>
+        <item name="cornerRadius">5dp</item>
+        <item name="colorOutline">#000</item>
+
+        <item name="android:height">55dp</item>
+    </style>
+    
+</resources>

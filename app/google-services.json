@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "327758864559",
+    "firebase_url": "https://smartmotiondetection123-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "smartmotiondetection123",
+    "storage_bucket": "smartmotiondetection123.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327758864559:android:58316c96db79ef8dc4b45a",
+        "android_client_info": {
+          "package_name": "app.mr.venky.smd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327758864559-pom4s3mnuaqc4u8cl4oafd8famtavt7j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.mr.venky.smd",
+            "certificate_hash": "f4a005715ffa06d94de5c3bff5bc157d61b5533e"
+          }
+        },
+        {
+          "client_id": "327758864559-fes3lq718segj1ihnip33oqme3dd1gks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAczUrDEZHofCJkW-QQdw--Vhc4CuPzxcI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327758864559-0mu72htgaht7vfd9fjt2f1h5rpbnunh8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
