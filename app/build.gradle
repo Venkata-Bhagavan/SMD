@@ -40,7 +40,6 @@ dependencies {
     implementation 'androidx.fragment:fragment:1.5.7'
 
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
-    implementation 'com.google.firebase:firebase-firestore:24.4.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -55,4 +54,10 @@ dependencies {
 
     // Also add the dependency for the Google Play services library and specify its version
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
+
+    implementation 'com.google.firebase:firebase-firestore'
+
+    // Glide for images
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+
 }

@@ -4,10 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.graphics.drawable.AnimationDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
+import java.util.Date;
+
 import app.mr.venky.smd.databinding.ActivityMainBinding;
+import app.mr.venky.smd.objects.SmdObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +45,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void recentCard() {
-
+        viewModel.getSmdObjects().observe(this, smdObjects -> {
+            if (!smdObjects.isEmpty()) {
+                SmdObject object = smdObjects.get(0);
+                binding.recentCard.recentObject.setText("Found " + object.getName() + " with " + object.getAccuracy() + "% accuracy.");
+                Date date = object.getTimestamp().toDate();
+                binding.recentCard.recentTime.setText(date.toString());
+                Glide.with(this).load(Uri.parse(object.getImage())).into(binding.recentCard.recentImage);
+            }
+        });
     }
 
     private void historyCard() {

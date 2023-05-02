@@ -5,11 +5,16 @@ import com.google.firebase.Timestamp;
 public class SmdObject {
     private String name;
     private Timestamp timestamp;
+    private float accuracy;
     private String image;
 
-    public SmdObject(String name, Timestamp timestamp, String image) {
+    public SmdObject() {
+    }
+
+    public SmdObject(String name, Timestamp timestamp, float accuracy, String image) {
         this.name = name;
         this.timestamp = timestamp;
+        this.accuracy = accuracy;
         this.image = image;
     }
 
@@ -27,6 +32,14 @@ public class SmdObject {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public float getAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(float accuracy) {
+        this.accuracy = accuracy;
     }
 
     public String getImage() {
