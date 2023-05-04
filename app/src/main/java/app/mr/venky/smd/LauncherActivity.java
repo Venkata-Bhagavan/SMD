@@ -109,10 +109,9 @@ public class LauncherActivity extends AppCompatActivity {
 
                         // Sign in success, update UI with the signed-in user's information
                         FirebaseUser user = mAuth.getCurrentUser();
+                        updateUI(user);
                         if (Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getAdditionalUserInfo()).isNewUser()) {
                             //todo: what to do when new user sign in..
-
-                            updateUI(user);
                             Toast.makeText(this, "welcome " + (user != null ? user.getDisplayName() : ""), Toast.LENGTH_SHORT).show();
                         } else {
                             //todo: what to do when old user sign in..

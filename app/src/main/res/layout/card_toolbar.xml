@@ -45,12 +45,11 @@
         <ImageView
             android:id="@+id/status_img"
             android:layout_width="wrap_content"
-            android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
             android:src="@drawable/enable_anim"
-            app:layout_constraintBottom_toBottomOf="@+id/status"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/status"
-            app:layout_constraintTop_toTopOf="@+id/status" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/status"

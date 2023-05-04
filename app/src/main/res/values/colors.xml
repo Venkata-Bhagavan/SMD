@@ -11,4 +11,6 @@
     <color name="yellow">#FF9800</color>
 <!--    <color name="app_theme">#00BCD4</color>-->
     <color name="app_theme">@color/primary</color>
+    <color name="divider_color">#D6EFFF</color>
+
 </resources>
