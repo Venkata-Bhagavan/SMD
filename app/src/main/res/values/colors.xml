@@ -12,5 +12,6 @@
 <!--    <color name="app_theme">#00BCD4</color>-->
     <color name="app_theme">@color/primary</color>
     <color name="divider_color">#D6EFFF</color>
+    <color name="light_gray">#E3E3E3</color>
 
 </resources>
