@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -33,6 +34,7 @@ import app.mr.venky.smd.databinding.ActivityLauncherBinding;
 
 public class LauncherActivity extends AppCompatActivity {
 
+    private static final String TAG = "LauncherActivity";
     private ActivityLauncherBinding binding;
     private FirebaseAuth mAuth;
 
@@ -134,9 +136,21 @@ public class LauncherActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
+            subscribeToFCMTopic();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
         }
+    }
+    private void subscribeToFCMTopic() {
+        // Subscribe to the "smd" topic
+        FirebaseMessaging.getInstance().subscribeToTopic("smd")
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "Subscribed to topic: smd");
+                    } else {
+                        Log.e(TAG, "Failed to subscribe to topic: smd", task.getException());
+                    }
+                });
     }
 }

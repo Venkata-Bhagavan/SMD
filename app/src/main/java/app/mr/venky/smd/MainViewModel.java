@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -11,7 +12,11 @@ import androidx.lifecycle.ViewModel;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -22,6 +27,7 @@ import java.util.List;
 import app.mr.venky.smd.objects.SmdObject;
 
 public class MainViewModel extends AndroidViewModel {
+
 
     private FirebaseFirestore db;
 
@@ -42,7 +48,7 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     protected void loadData() {
-        db.collection("smd")
+    /*    db.collection("smd")
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -59,6 +65,26 @@ public class MainViewModel extends AndroidViewModel {
                         } else {
                             Log.w("TAG", "Error getting documents.", task.getException());
                         }
+                    }
+                });*/
+
+        db.collection("smd")
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+
+                        if (error != null) {
+                            Log.e("TAG", "onEvent: "+error );
+                        }
+
+                        List<SmdObject> smdList = new ArrayList<>();
+                        if (value != null)
+                            for (QueryDocumentSnapshot doc : value) {
+                                SmdObject smdObject = doc.toObject(SmdObject.class);
+                                smdList.add(smdObject);
+                            }
+                        setSmdObjects(smdList);
                     }
                 });
     }
