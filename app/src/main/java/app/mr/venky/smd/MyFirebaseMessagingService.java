@@ -4,7 +4,10 @@ package app.mr.venky.smd;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.media.AudioAttributes;
+import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 
@@ -37,10 +40,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void notify(String title, String body, String imageUrl) {
 
         Log.i(TAG, "notify: called");
+        Uri sound = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getPackageName() + "/" + R.raw.alert);  //Here is FILE_NAME is the name of file that you want to play
 
+        Log.i(TAG, "notify: "+sound.toString());
 //        Building a Pending intent. we can use this to navigate to required activity on notification click.
         Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
 //        This is for setting a picture in notification
@@ -51,7 +56,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setSummaryText(body)
                     .bigPicture(Glide.with(this).asBitmap().load(imageUrl).submit().get());
         } catch (ExecutionException | InterruptedException e) {
-            throw new RuntimeException(e);
+            Log.e(TAG, "notify: Failed to load image : "+ e);
         }
 
 //        Building a notification.
@@ -59,6 +64,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(title)
                 .setContentText(body)
+                .setSound(sound)
                 .setAutoCancel(true)
                 .setStyle(bigPicture) // even if style was null it was not a problem
                 .setContentIntent(pendingIntent)
@@ -72,6 +78,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 CharSequence channelName = "Sem 4 Project";
                 int importance = NotificationManager.IMPORTANCE_HIGH;
                 NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
+                // For setting audio in Android Oreo and above.
+                AudioAttributes attributes = new AudioAttributes.Builder()
+                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                        .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                        .build();
+                channel.setSound(sound, attributes);
                 notificationManager.createNotificationChannel(channel);
             }
             notificationManager.notify(new Random().nextInt(1000), builder.build());
