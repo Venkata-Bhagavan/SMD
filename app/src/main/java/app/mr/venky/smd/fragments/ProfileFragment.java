@@ -1,6 +1,5 @@
 package app.mr.venky.smd.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,7 +62,7 @@ public class ProfileFragment extends BottomSheetDialogFragment {
                 auth.signOut();
 
          /*       signing out from google
-                  (if this not performed, on clicking signin it will login with
+                  (if this not performed, on clicking sign in it will login with
                   same google account and not ask for choosing account)*/
                 GoogleSignInOptions gso = new GoogleSignInOptions.
                         Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).

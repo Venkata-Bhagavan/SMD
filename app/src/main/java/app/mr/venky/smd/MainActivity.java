@@ -20,6 +20,7 @@ import java.util.List;
 import app.mr.venky.smd.databinding.ActivityMainBinding;
 import app.mr.venky.smd.fragments.HistoryFragment;
 import app.mr.venky.smd.fragments.ProfileFragment;
+import app.mr.venky.smd.fragments.SettingsFragment;
 import app.mr.venky.smd.objects.SmdObject;
 
 public class MainActivity extends AppCompatActivity {
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         // settings
         binding.moreCard.settings.setOnClickListener(view -> {
             Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+            SettingsFragment.newInstance().show(getSupportFragmentManager(),"dialog");
         });
 
         // about

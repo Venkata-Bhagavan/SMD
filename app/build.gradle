@@ -59,6 +59,9 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-messaging'
 
+    implementation 'com.google.firebase:firebase-database:'
+
+
 
     // Glide for images
     implementation 'com.github.bumptech.glide:glide:4.15.1'
