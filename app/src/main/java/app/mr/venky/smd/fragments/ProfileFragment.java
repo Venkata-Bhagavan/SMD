@@ -3,6 +3,7 @@ package app.mr.venky.smd.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import app.mr.venky.smd.LauncherActivity;
 import app.mr.venky.smd.databinding.FragmentProfileBinding;
@@ -30,6 +32,7 @@ import app.mr.venky.smd.databinding.FragmentProfileBinding;
  */
 public class ProfileFragment extends BottomSheetDialogFragment {
 
+    private static final String TAG = "ProfileFragment";
     private FragmentProfileBinding binding;
 
     // TODO: Customize parameters
@@ -68,6 +71,11 @@ public class ProfileFragment extends BottomSheetDialogFragment {
                 GoogleSignInClient signInClient = GoogleSignIn.getClient(view.getContext(), gso);
                 signInClient.signOut();
 
+                // Unsubscribing for notifications.
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("smd").addOnCompleteListener(task -> {
+                    Log.i(TAG, "Unsubscribe Notification: " + task.isSuccessful());
+                });
+
                 // navigating to Launcher activity
                 Intent intent = new Intent(getContext(), LauncherActivity.class);
                 startActivity(intent);
@@ -77,9 +85,6 @@ public class ProfileFragment extends BottomSheetDialogFragment {
 
     }
 
-    private void signOut(FirebaseAuth auth, Context context) {
-
-    }
 
     @Override
     public void onDestroyView() {
