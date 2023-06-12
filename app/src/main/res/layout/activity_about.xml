@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AboutActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/slide1"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="40dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/slide2"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="40dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/slide3"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="40dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/slide4"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="40dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/slide5"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="40dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/slide6"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="40dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/slide7"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="40dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/slide8"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="40dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/slide9"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="40dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

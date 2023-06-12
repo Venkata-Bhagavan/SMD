@@ -7,15 +7,17 @@ public class SmdObject {
     private Timestamp timestamp;
     private float accuracy;
     private String image;
+    private String id;
 
     public SmdObject() {
     }
 
-    public SmdObject(String name, Timestamp timestamp, float accuracy, String image) {
+    public SmdObject(String name, Timestamp timestamp, float accuracy, String image, String id) {
         this.name = name;
         this.timestamp = timestamp;
         this.accuracy = accuracy;
         this.image = image;
+        this.id = id;
     }
 
     public String getName() {
@@ -48,5 +50,24 @@ public class SmdObject {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "SmdObject{" +
+                "name='" + name + '\'' +
+                ", timestamp=" + timestamp +
+                ", accuracy=" + accuracy +
+                ", image='" + image + '\'' +
+                ", id='" + id + '\'' +
+                '}';
     }
 }

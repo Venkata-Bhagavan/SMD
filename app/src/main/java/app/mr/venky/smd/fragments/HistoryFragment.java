@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 import java.util.Objects;
@@ -55,7 +57,7 @@ public class HistoryFragment extends BottomSheetDialogFragment {
         HistoryAdapter adapter = new HistoryAdapter(MainActivity.history, new HistoryAdapter.OnClickListener() {
             @Override
             public void onItemClick(HistoryAdapter.ViewHolder holder, int position) {
-                Toast.makeText(view.getContext(), "Clicked on item " + position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(view.getContext(), "Clicked on item " + position, Toast.LENGTH_SHORT).show();
             }
             @Override
             public boolean onItemLongClick(HistoryAdapter.ViewHolder holder, int position) {
@@ -64,6 +66,18 @@ public class HistoryFragment extends BottomSheetDialogFragment {
         });
         binding.historyList.setLayoutManager(manager);
         binding.historyList.setAdapter(adapter);
+
+        binding.deleteHistory.setOnClickListener(view1 -> {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            for (int i = 5; i < MainActivity.history.size(); i++) {
+                SmdObject object = MainActivity.history.get(i);
+                if (object.getId() != null) {
+                    db.collection("smd").document(object.getId()).delete();
+                }
+            }
+            Toast.makeText(view.getContext(), "Deleted all items Except last 5", Toast.LENGTH_SHORT).show();
+        });
+
         }
 
     }

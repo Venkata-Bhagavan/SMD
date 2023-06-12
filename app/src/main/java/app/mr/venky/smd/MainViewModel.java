@@ -134,6 +134,7 @@ public class MainViewModel extends AndroidViewModel {
                         if (value != null)
                             for (QueryDocumentSnapshot doc : value) {
                                 SmdObject smdObject = doc.toObject(SmdObject.class);
+                                smdObject.setId(doc.getId());
                                 smdList.add(smdObject);
                             }
                         setSmdObjects(smdList);

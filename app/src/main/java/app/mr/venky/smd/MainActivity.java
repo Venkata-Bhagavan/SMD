@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -24,6 +26,8 @@ import app.mr.venky.smd.fragments.SettingsFragment;
 import app.mr.venky.smd.objects.SmdObject;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     private boolean enabled = true;
     private ActivityMainBinding binding;
@@ -89,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             HistoryAdapter adapter = new HistoryAdapter(smdObjects.subList(0, Math.min(MAX_POSTS, smdObjects.size())), new HistoryAdapter.OnClickListener() {
                 @Override
                 public void onItemClick(HistoryAdapter.ViewHolder holder, int position) {
-                    Toast.makeText(MainActivity.this, "Clicked on item " + position, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, "Clicked on item " + position, Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -108,7 +112,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        animateStatus(); // need to call this animation so that animation vector work.
+        try {
+            animateStatus(); // need to call this animation so that animation vector work.
+        } catch (Exception e) {
+            Log.d(TAG, "onStart: "+e);
+        }
     }
 
     private void moreCard() {
@@ -120,7 +128,9 @@ public class MainActivity extends AppCompatActivity {
 
         // about
         binding.moreCard.about.setOnClickListener(view -> {
-            Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
         });
 
         // profile
