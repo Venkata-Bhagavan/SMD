@@ -12,6 +12,10 @@ import androidx.lifecycle.ViewModel;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -30,16 +34,27 @@ import app.mr.venky.smd.objects.SmdObject;
 public class MainViewModel extends AndroidViewModel {
 
 
+    private static final String TAG = "MainViewModel";
+
     private FirebaseFirestore db;
 
     private MutableLiveData<List<SmdObject>> smdObjects = new MutableLiveData<>();
 
+    public MutableLiveData<Integer> status = new MutableLiveData<>(-1);
+
     public LiveData<List<SmdObject>> getSmdObjects() {
         return smdObjects;
     }
-
     public void setSmdObjects(List<SmdObject> smdObjects) {
         this.smdObjects.setValue(smdObjects);
+    }
+
+    public LiveData<Integer> getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status.setValue(status);
     }
 
     public MainViewModel(@NonNull Application application) {
@@ -63,6 +78,25 @@ public class MainViewModel extends AndroidViewModel {
                         Log.d("TAG FCM TOKEN", token);
                     }
                 });
+
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        db.getReference("settings").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    long status = (long) snapshot.child("status").getValue();
+                    setStatus((int) status);
+                } catch (Exception e) {
+                    Log.e(TAG, "onDataChange: long"+ e );
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     protected void loadData() {

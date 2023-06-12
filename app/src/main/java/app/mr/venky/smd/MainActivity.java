@@ -39,14 +39,30 @@ public class MainActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         // status in toolbar
-        binding.toolbar.status.setOnClickListener(view -> {
-            enabled = !enabled;
-            binding.toolbar.status.setText(enabled ? "Enabled" : "Disabled");
-            binding.toolbar.statusImg.setImageResource(enabled ? R.drawable.enable_anim : R.drawable.disabled_anim);
-            animateStatus(); // need to call this animation so that animation vector work.
+//        binding.toolbar.status.setOnClickListener(view -> {
+//            enabled = !enabled;
+//            binding.toolbar.status.setText(enabled ? "Enabled" : "Disabled");
+//            binding.toolbar.statusImg.setImageResource(enabled ? R.drawable.enable_anim : R.drawable.disabled_anim);
+//            animateStatus(); // need to call this animation so that animation vector work.
+//        });
+
+        // status
+        viewModel.status.observe(this, integer -> {
+            if (integer == -1) {
+                binding.toolbar.status.setText("Offline");
+                binding.toolbar.statusImg.setImageResource( R.drawable.icon_round_24);
+
+            } else if (integer == 0) {
+                binding.toolbar.status.setText("Disabled");
+                binding.toolbar.statusImg.setImageResource( R.drawable.disabled_anim);
+                animateStatus();
+            } else if (integer == 1) {
+                binding.toolbar.status.setText("Enabled");
+                binding.toolbar.statusImg.setImageResource( R.drawable.enable_anim);
+                animateStatus();
+            }
+
         });
-
-
         recentCard();
         historyCard();
         moreCard();
@@ -98,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
     private void moreCard() {
         // settings
         binding.moreCard.settings.setOnClickListener(view -> {
-            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
             SettingsFragment.newInstance().show(getSupportFragmentManager(),"dialog");
         });
 

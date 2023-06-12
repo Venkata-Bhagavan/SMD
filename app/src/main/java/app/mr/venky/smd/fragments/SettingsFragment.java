@@ -65,11 +65,22 @@ public class SettingsFragment extends BottomSheetDialogFragment {
                         values.setLow_priority_time(Integer.parseInt(binding.lowAlertTime.getText().toString()));
 
                         database.getReference("settings").setValue(values).addOnCompleteListener(task1 -> {
-                            Toast.makeText(getContext(), task1.isSuccessful()? "Saved Successfully": "Failed to Save", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(view.getContext(), task1.isSuccessful()? "Saved Successfully": "Failed to Save", Toast.LENGTH_SHORT).show();
                         });
                     });
 
                 }
+/*                try {
+                    long low_time = (long) task.getResult().child("low_priority_time").getValue();
+                    long high_time = (long) task.getResult().child("high_priority_time").getValue();
+                    boolean alarm_mode = (boolean) task.getResult().child("alarm_mode").getValue();
+
+                    binding.lowAlertTime.setText(String.valueOf(low_time));
+                    binding.highAlertTime.setText(String.valueOf(high_time));
+                    binding.alarmMode.setChecked(alarm_mode);
+                } catch (Exception e) {
+                    Log.e(TAG, "onViewCreated: "+e );
+                }*/
 
             } else {
                 Toast.makeText(getContext(), "Failed to Load Settings", Toast.LENGTH_SHORT).show();
